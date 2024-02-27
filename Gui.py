@@ -19,7 +19,7 @@ def input1(sim,auto,combobox):
         T.insert(customtkinter.END, "Need Name Input", 'warning')
         return -1
         
-    os.chdir("/home/gabepm100/OT2Control")
+    os.chdir("/home/halversm/OT2Control")
     if sim.get()==1:
         ent=ent + " --no-sim"
     if auto.get():
