@@ -156,6 +156,21 @@ class Board:
         
         
     def get_spot(self,loc):
+        location = {
+            10: 0,
+            11: 1,
+            8: 4,
+            9: 5,
+            5: 7,
+            6: 8, 
+            1: 9,
+            2: 10,
+            3: 11
+        }
+
+        if loc in location.keys():
+            return location[loc]
+        """     
         if loc==10:
             return 0
         elif loc==11:
@@ -173,7 +188,7 @@ class Board:
         elif loc==2:
             return 10
         elif loc==3:
-            return 11
+            return 11 """
         
               
 
