@@ -139,7 +139,6 @@ class Board:
         return name_key_pairs
     
     def name_to_num(self,name):
-        """
         item_names = {
             "tip_rack_20uL": 2,
             "tip_rack_300uL": 2,
@@ -152,25 +151,8 @@ class Board:
         if name in item_names.keys():
             return item_names[name]
         else:
-            return 0 """
-
-        
-        if name=="tip_rack_20uL":
-            return 2
-        elif name=="tip_rack_300uL":
-            return 2
-        elif name=="tip_rack_1000uL":
-            return 2
-        elif name=="96_well_plate":
-            return 2
-        elif name=="24_well_plate":
-            return 1
-        elif name=="tube_holder_10":
-            return 3
-        elif name=="temp_mod_24_tube":
-            return 1
-        elif name=="":
             return 0 
+
         
         
     def get_spot(self,loc):
