@@ -170,26 +170,6 @@ class Board:
 
         if loc in location.keys():
             return location[loc]
-        """     
-        if loc==10:
-            return 0
-        elif loc==11:
-            return 1
-        elif loc==8:
-            return 4
-        elif loc==9:
-            return 5
-        elif loc==5:
-            return 7
-        elif loc==6:
-            return 8
-        elif loc==1:
-            return 9
-        elif loc==2:
-            return 10
-        elif loc==3:
-            return 11 """
-        
               
 
   
