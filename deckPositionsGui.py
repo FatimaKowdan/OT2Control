@@ -252,6 +252,7 @@ class CTkinterApp(customtkinter.CTk):
 
     def draw_small_reagents(self,x,y,board):
         filled="black"
+
         index=board.positions.index([x,y])
         for i in range(4):
             for j in range(6):
@@ -611,7 +612,7 @@ class StartPage(customtkinter.CTkFrame):
 
         controller.board.create_full_board(controller)
 
-        button= customtkinter.CTkButton(self,text="Close",width=200,command=parent.destroy)
+        button= customtkinter.CTkButton(self,text="Confirm Placement",width=200,command=parent.destroy)
         button.place(x=300,y=650)
 
 # second window frame page1 
@@ -630,7 +631,7 @@ class Page1(customtkinter.CTkFrame):
         controller.board.create_single_cell(controller)
         # button to show frame 2 with text
         # layout2
-        button1 = customtkinter.CTkButton(self, text ="StartPage", command = lambda : controller.show_frame(StartPage))
+        button1 = customtkinter.CTkButton(self, text ="Return To Deck", command = lambda : controller.show_frame(StartPage))
         tooltip_1 = CTkToolTip(button1, message="50")
         
         # putting the button in its place 
