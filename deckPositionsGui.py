@@ -93,7 +93,7 @@ class Board:
         scope = ['https://spreadsheets.google.com/feeds',
                  'https://www.googleapis.com/auth/drive']
         #get login credentials from local file. Your json file here
-        path = '/home/gabepm100/Documents/hendricks-lab-jupyter-sheets-5363dda1a7e0.json'
+        path = '/home/halversm/Documents/hendricks-lab-jupyter-sheets-5363dda1a7e0.json'
         credentials = ServiceAccountCredentials.from_json_keyfile_name(path, scope) 
         return credentials
     
@@ -139,6 +139,22 @@ class Board:
         return name_key_pairs
     
     def name_to_num(self,name):
+        """
+        item_names = {
+            "tip_rack_20uL": 2,
+            "tip_rack_300uL": 2,
+            "tip_rack_1000uL": 2,
+            "96_well_plate": 2,
+            "24_well_plate": 1,
+            "tube_holder_10": 3,
+            "temp_mod_24_tube": 1
+        }
+        if name in item_names.keys():
+            return item_names[name]
+        else:
+            return 0 """
+
+        
         if name=="tip_rack_20uL":
             return 2
         elif name=="tip_rack_300uL":
@@ -154,7 +170,7 @@ class Board:
         elif name=="temp_mod_24_tube":
             return 1
         elif name=="":
-            return 0
+            return 0 
         
         
     def get_spot(self,loc):

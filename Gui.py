@@ -6,7 +6,7 @@ import pickle
 
 def run():
    os.chdir
-   os.chdir("/home/gabepm100/OT2Control")
+   os.chdir("/home/halversm/OT2Control")
    execute_python_file('deckPositionsGui.py',mynumber.get())
 
 
