@@ -5,33 +5,60 @@ import os
 import pickle
 
 def run():
+   """ Executes python script deckPositionsGui.py with the 
+   directory path where the script is located.
+
+   Parameters: none
+   Returns: none
+   """
    os.chdir
    os.chdir("/home/gabepm100/OT2Control")
-   execute_python_file('deckPositionsGui.py',mynumber.get())
+
+   # Executes file with the user's login number (ex: CNH_002)
+   execute_python_file('deckPositionsGui.py',mynumber.get()) 
 
 
 def input1(sim,auto,combobox):
-    global mynumber
-    update_pickle(mynumber.get(),combobox)
-    ent=" -n " +mynumber.get()
+    """ Handles input parameters and executes the python script
+   controller.py
+
+   Parameters:
+      sim (int): Integer representing simulation mode (0 or 1).
+      auto (bool): Boolean indicating whether to run in automatic mode.
+      combobox (object): Object representing the combobox widget from customtkinter
+
+   Returns:
+      int: -1 if there is a validation error, otherwise returns None
+    """
+    global mynumber # Name input from GUI (ex: CHN_002)
+    update_pickle(mynumber.get(),combobox) # Updates pickle file (caching) with mynumber and combobox values
+    ent=" -n " +mynumber.get() # Constructs argument string with 'mynumber'
+    
+    # Check to see if 'mynumber' is empty
     if len(ent)==4:
+        # Displays warning message in text widget
         T.delete("1.0",customtkinter.END)
         T.insert(customtkinter.END, "Need Name Input", 'warning')
         return -1
         
     os.chdir("/home/gabepm100/OT2Control")
+
+    # Appends either auto or sim flag
     if sim.get()==1:
         ent=ent + " --no-sim"
     if auto.get():
         ent = ent+ " -m auto"
-    #test one
     
     command="controller.py"
     
+    # Executes python script with constructed string argument
     output=execute_python_file(command,ent)
-    #output=output.stdout
+
+    # Clears the text widget
     T.delete("1.0",customtkinter.END)
-    T.insert(customtkinter.END,output) #FIX#
+
+    # Pipelines output into the text widget
+    T.insert(customtkinter.END,output) 
 
 def execute_python_file(file_Name, argument):
    try:
