@@ -93,12 +93,31 @@ def execute_python_file(file_Name, argument):
       print(f"Error: The file does not exist.")
       
 def execute_command(command):
-   # executes the given command and returns the process
+   """
+   Executes the given command and returns the process using subprocess.
+
+   Parameter:
+      command (str): Contains the valid shell command you want to execute.
+   
+   Returns:
+      process (obj):The subprocess.Popen object that allows you to interact with 
+                     the executed command and obtain information about its execution
+   """
    process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
    return process
 
 def read_stdout(process):
-   # reads stdout of the given process line by line and update the output
+   """
+   Reads stdout of the given process line by line and updates the output by calling
+   the function update_output.
+
+   Parameter:
+      process (obj): a subprocess.Popen object that allows the function to 
+                     read the standard output of the executed command and update the output accordingly
+   
+   Returns: 
+      None
+   """   
    while True:
       output = process.stdout.readline().decode('utf-8')
       if not output:
@@ -106,7 +125,16 @@ def read_stdout(process):
       update_output(output)
 
 def read_stderr(process):
-   # reads stderr of the provided process line by line and the output
+   """
+   Reads stderr of the provided process line by line and the output.
+
+   Parameter:
+      process (obj): a subprocess.Popen object that allows the function to 
+                     read the standard output of the executed command and update the output accordingly
+   
+   Returns: 
+      None
+   """
    while True:
       error = process.stderr.readline().decode('utf-8')
       if not error:
