@@ -5,7 +5,8 @@ import os
 import pickle
 
 def run():
-   """ Executes python script deckPositionsGui.py with the 
+   """ 
+   Executes python script deckPositionsGui.py with the 
    directory path where the script is located.
 
    Parameters: none
@@ -19,8 +20,9 @@ def run():
 
 
 def input1(sim,auto,combobox):
-    """ Handles input parameters and executes the python script
-   controller.py
+    """ 
+    Executes the Python script 'controller.py' with specified arguments based on user inputs.
+    Updates the GUI text widget with the output of the script
 
    Parameters:
       sim (int): Integer representing simulation mode (0 or 1).
@@ -61,8 +63,26 @@ def input1(sim,auto,combobox):
     T.insert(customtkinter.END,output) 
 
 def execute_python_file(file_Name, argument):
+   """ Executes a Python script with the given file using subprocess to run the file.
+   Takes either a file name if it is in the same directory or a file path if it is not. Runs said file
+   simultaneously to the current process. Determines if the file ran successfully or failed to execute.
+
+   Called for both input1 and deck position.
+
+   Parameters:
+      file_Name (str): Name of the python script to execute
+      argument (str): String of different arguments
+   
+   Returns: Standard output of the executed script if successful.
+               Standard error output if the execution fails.
+
+   
+   """
    try:
+      # Executes specified python script
       completed_process = subprocess.run(['python3', file_Name, argument], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+      
+      # Checks the return code of subprocess and returns standard output if successful or not
       if completed_process.returncode == 0:
          print("Execution successful.")
          return completed_process.stdout
