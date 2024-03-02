@@ -142,38 +142,77 @@ def read_stderr(process):
       update_output(error)
 
 def update_output(text):
-   # updates the output text
+   """
+   Updates the output text in the custom tkinter text widget
+
+   Parameter: 
+      text (str): The text to be inserted into the text widget
+   """
    T.insert(customtkinter.END, text)
    T.see(customtkinter.END)
    
 def update_pickle(val,combobox):
+   """
+   Updates the pickle file for caching with the provided value 
+
+   Parameters:
+      val (str): The value to be added to pickle file
+      combobox (obj): Object representing the combobox widget from customtkinter
+   """
+   # Keep track of values displayed in combobox widget
    global comboboxlist
    vals=list(comboboxlist)
    try:
+
+      # Check if provided value is a non-empty string
       if isinstance(val,str) and val!='':
          filename='pickle.pk'
          if os.path.isfile(filename):
 
+            # Appends the value to the list of cached values
             vals.append(val)
             with open(filename, 'wb') as g:
+
+               # Removes duplicates by converting to dictionary then to list
                vals=list(dict.fromkeys(vals))
+
+               # Limits list size to 10
                if len(vals)>10:
+
+                  # Removes first element (oldest value) from 'vals' list
                   vals=vals[1:]
+               
+               # Serializes 'vals' data to file object
                pickle.dump(vals,g)
                g.close()
       else:
          print("Sheetname is not string")
+
+      # Configure the combobox widget with the updated list of values
       combobox.configure(values=vals)
    except:
       print("updating pickle didnt work. Please try doing something different")
       
 
 def read_pickle():
+   """
+   Reads and returns the values stored in pickle caching file
+
+   Returns:
+      list: A list cotianing the values stored in the pickle file. 
+      If reading the file fails, an empty list is returned
+   """
    try:
       with open('pickle.pk', 'rb') as fi:
+
+         # Reads data stored in pickle file and converts into a Pyton object
          loadedval=pickle.load(fi)
+
+         # Filters out 'None' values 
          loadedval=[x for x in list(loadedval) if x]
          fi.close()
+
+         # Removes duplicates from list 'loadedval' by converting to dictionary then back to list to preserve order of elements
          return list(dict.fromkeys(loadedval))
    except:
       print("couldnt read pickle")
