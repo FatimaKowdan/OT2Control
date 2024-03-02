@@ -218,25 +218,29 @@ def read_pickle():
       print("couldnt read pickle")
       return []
 
+### Setup and create GUI using custom tkinter ###
+
+# Setup custom tkinter appearance
 customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme('dark-blue')
+
 #Create an instance of Tkinter frame
 win= customtkinter.CTk()
 win.title("OT2Control")
-#Set the geometry of Tkinter frame
 
+#Set the geometry of Tkinter frame
 win.geometry("750x450")
 win.configure(fg_color= '#252526')
 win.title("OT2Control")
 
-# Name Label
+# Create label that prompts for the user name
 l = customtkinter.CTkLabel(master= win, text = "What is the name?")
 l.configure(font =("Inter", 16), text_color="white")
 l = customtkinter.CTkLabel(master= win, text = "What is the name?")
 l.configure(font =("Inter", 16), text_color="white")
 l.pack()
 
-#Create an Entry widget to accept User Input
+# Create an Entry widget to accept User Input
 mynumber = customtkinter.StringVar()
 combobox = customtkinter.CTkComboBox(win, width = 400 , variable = mynumber,fg_color='#3e3e42')
 v=read_pickle()
@@ -244,29 +248,32 @@ combobox.configure(values = v)
 comboboxlist=v
 combobox.pack()
 
-#Sim checkbox
-
+# Create Simutation checkbox
 sim = IntVar()
 c2 = customtkinter.CTkCheckBox(master= win, text='Sim?',variable=sim, onvalue=1, offvalue=0, fg_color= "303030", text_color= "white", border_color = "#A7A6A6")
 c2.configure(border_width= 2, font= ("Inter", 12))
 c2.pack(padx=20, pady= (15, 10))
 
 
-#Sim checkbox
+# Create Automation checkbox
 auto = IntVar()
 c2 = customtkinter.CTkCheckBox(master= win, text='Auto?',variable=auto, onvalue=1, offvalue=0, text_color= "white", border_color = "#A7A6A6")
 c2.configure(border_width= 2, font= ("Inter", 12))
 c2.pack()
 output="hello"
+
 #Create a Button to validate Entry Widget
 customtkinter.CTkButton(win, text= "Execute",width= 20,fg_color='#007acc', font= ("Inter", 12) ,command= lambda : [input1(sim,auto,combobox)]).pack(pady=(20, 13))
+
 # Bind the <Return> event to the execute_button's command
 win.bind('<Return>', lambda event: [input1(sim, auto,combobox)])
 
-#show deck positions
+# Create button to show deck positions
 customtkinter.CTkButton(win, text= "Check Deck Positions",fg_color='#007acc', font= ("Inter", 12), command=run, width=30).pack(pady= (0, 17))
+
 # Create text widget and specify size.
 T = customtkinter.CTkTextbox(win, height = 5, width = 52)
+
 # Create label
 l = customtkinter.CTkLabel(win, text = "Output", text_color= "white")
 l.configure(font =("Inter", 14))
@@ -274,6 +281,7 @@ l = customtkinter.CTkLabel(win, text = "Output", text_color= "white")
 l.configure(font =("Inter", 14))
 l.pack()
 
+# Create scrollbar
 v=customtkinter.CTkScrollbar(win,orientation='vertical') 
 v.pack(side="right", fill='y')  
 
